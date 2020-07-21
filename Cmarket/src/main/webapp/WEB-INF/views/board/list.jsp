@@ -19,6 +19,13 @@
     <div>
       <h1>제품목록</h1>
     </div>
+    
+    <div class="row">
+	${login.id } <a href="${!empty login.id ? '/member/logout' : '/member/login' }">
+	${!empty login.id ? '로그아웃' : '로그인'}</a><br>
+	</div><!-- /.row -->
+    
+    
     <div>
       <button class="btn btn-primary" onclick="location.href='/board/insert'">제품 등록</button>
     </div>

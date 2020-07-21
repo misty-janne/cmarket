@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 
 @Repository
@@ -49,6 +50,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public void delete(String id) {
 		session.delete(NS+".delete", id);
 		
+	}
+
+	@Override
+	public MemberDTO loginpost(LoginDTO login) {
+		return session.selectOne(NS+".loginpost", login);
 	}
 
 }

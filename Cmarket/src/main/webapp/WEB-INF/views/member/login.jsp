@@ -17,39 +17,22 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row text-center">
-			<h1>회원 목록</h1>
-		</div><!-- /.row-text-center -->
-		
-		
 		<div class="row">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="th-center">아이디</th>
-						<th class="th-center">이름</th>
-						<th class="th-center">권한</th>
-						<th class="th-center">탈퇴</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<c:forEach items="${list }" var="dto">
-						<tr>
-							<td>
-								<a href="/member/read/${dto.id }">${dto.id }</a>
-							</td>
-							<td>${dto.name }</td>
-							<td>${dto.modes }</td>
-							<td><button onclick="location.href='/member/delete/${dto.id}'">탈퇴</button></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div><!-- /.row (table) -->
-		
+			<form action="/member/loginpost" method="post">
+				<div class="form-group">
+					<label for="id">아이디</label>
+					<input id="id" name="id" class="form-control" required>	
+				</div>
+				<div class="form-group">
+					<label for="pw">PW</label>
+					<input id="pw" name="pw" class="form-control" type="password" required>	
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" >로그인</button>	
+				</div>
+			
+			</form>
+		</div><!-- /.row -->
 	</div><!-- /.container -->
-
-
 </body>
 </html>

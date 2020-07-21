@@ -2,6 +2,7 @@ package kr.co.persistence;
 
 import java.util.List;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 
 public interface MemberDAO {
@@ -17,6 +18,8 @@ public interface MemberDAO {
 	void update(MemberDTO dto);
 
 	void delete(String id);
+
+	MemberDTO loginpost(LoginDTO login);
 	
 
 }
