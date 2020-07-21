@@ -8,9 +8,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -54,12 +54,16 @@
 
 
     <div class="form-group text-right">
-      <button id="board_insertBtn" class="btn btn-primary">제품 구매</button>
+      <button id="board_insertBtn" class="btn btn-primary">바로구매</button>
       <button id="board_likesBtn" class="btn btn-primary">찜하기</button>
       <button id="board_replyBtn" class="btn btn-primary">댓글</button>
-      <button id="board_updateBtn" class="btn btn-primary">수정(판매자이상전용버튼_ 권한 부여 필요)</button>
-      <button id="board_deleteBtn" class="btn btn-primary">삭제(판매자이상전용버튼_ 권한 부여 필요)</button>
-      <button id="board_listBtn" class="btn btn-primary">제품목록</button>
+      <c:if test="${sessionScope.login.id.equals(bDto.writer)}">
+      <button id="board_updateBtn" class="btn btn-primary">수정</button>
+      </c:if>
+      <c:if test="${sessionScope.login.id.equals(bDto.writer) ||login.modes.equals('admin') || login.modes.equals('ceo')}">
+      <button id="board_deleteBtn" class="btn btn-primary">삭제</button>
+      </c:if>
+      <button id="board_listBtn" class="btn btn-primary">목록</button>
     </div>
   </div>
   <script type="text/javascript">

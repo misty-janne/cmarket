@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<%@ include file="../includes/header.jsp" %>
     
 <!DOCTYPE html>
 <html>
@@ -13,9 +15,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
+
+
 	<div class="container">
 		<div class="row text-center">
 			<h1>회원 목록</h1>
@@ -29,7 +34,9 @@
 						<th class="th-center">아이디</th>
 						<th class="th-center">이름</th>
 						<th class="th-center">권한</th>
-						<th class="th-center">탈퇴</th>
+						<c:if test="${login.modes.equals('admin')|| login.modes.equals('ceo')}">
+						<th class="th-center">탈퇴</th>						
+						</c:if>
 					</tr>
 				</thead>
 				
@@ -41,7 +48,9 @@
 							</td>
 							<td>${dto.name }</td>
 							<td>${dto.modes }</td>
+						<c:if test="${login.modes.equals('admin')|| login.modes.equals('ceo')}">
 							<td><button onclick="location.href='/member/delete/${dto.id}'">탈퇴</button></td>
+						</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>

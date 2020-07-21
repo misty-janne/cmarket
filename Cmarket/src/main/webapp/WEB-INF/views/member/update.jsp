@@ -45,6 +45,7 @@
 					<input name="addr" id="addr" value="${dto.addr }" class="form-control" required>
 				</div>
 				<!-- 분류 수정권한 admin 부여 -->
+				<c:if test="${login.modes.equals('admin')|| login.modes.equals('ceo')}">
 				<div class="form-group">
 					<label for="modes">분류</label>
 					<select name="modes" class="form-control">
@@ -54,6 +55,7 @@
 						<option value="ceo">ceo</option>
 					</select>
 				</div>
+				</c:if>
 			</form><!-- /update -->
 			
 			<div class="form-group">
