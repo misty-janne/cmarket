@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -7,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,13 +15,10 @@
 </head>
 <body>
   <div class="container">
-    <div>
-      <h1>제품목록</h1>
+    <div class="row">
+      <h1>검색 결과</h1>
+      <p>검색 유형 : ${searchType}, 키워드 : ${keyword}</p>
     </div>
-    <div>
-      <button class="btn btn-primary" onclick="location.href='/board/insert'">제품 등록</button>
-    </div>
-
     <div class="row">
       <table class="table">
         <thead>
@@ -30,8 +26,6 @@
             <th class="th-center">글번호</th>
             <th class="th-center">제목</th>
             <th class="th-center">작성자</th>
-            <th class="th-center">가격</th>
-            <th class="th-center">재고</th>
             <th class="th-center">작성일</th>
             <th class="th-center">조회수</th>
           </tr>
@@ -53,44 +47,6 @@
           </c:forEach>
         </tbody>
       </table>
-    </div>
-
-    <div class="row text-center">
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li>
-            <c:if test="${to.curPage > 1 }">
-              <a href="/board/list?curPage=1">첨</a>
-            </c:if>
-          </li>
-          <li>
-            <c:if test="${to.curPage > 1 }">
-              <a href="/board/list?curPage=${to.curPage > 1 ? to.curPage-1 : 1}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </c:if>
-          </li>
-          <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="page">
-            <li class="${to.curPage == page?'active' : ''}">
-              <a href="/board/list?curPage=${page}">${page}</a>
-            </li>
-          </c:forEach>
-          <li>
-            <c:if test="${to.curPage < to.totalPage}">
-              <a href="/board/list?curPage=${to.curPage < to.totalPage? (to.curPage+1) : to.totalPage}"
-                aria-label="Next"
-              >
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </c:if>
-          </li>
-          <li>
-            <c:if test="${to.curPage < to.totalPage }">
-              <a href="/board/list?curPage=${to.totalPage}">끝</a>
-            </c:if>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
 </body>
