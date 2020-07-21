@@ -16,11 +16,39 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container">
+		<div class="row text-center">
+			<h1>회원 목록</h1>
+		</div><!-- /.row-text-center -->
+		
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="th-center">아이디</th>
+						<th class="th-center">이름</th>
+						<th class="th-center">권한</th>
+						<th class="th-center">탈퇴</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td>
+								<a href="/member/read/${dto.id }">${dto.id }</a>
+							</td>
+							<td>${dto.name }</td>
+							<td>${dto.modes }</td>
+							<td><button onclick="location.href='/member/delete/${dto.id}'">탈퇴</button></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div><!-- /.row (table) -->
+		
+	</div><!-- /.container -->
 
-	<c:forEach items="${list }" var="dto">
-		<a href="/member/read/${dto.id }">${dto.id }: ${dto.name }</a>
-		<br>
-	</c:forEach>
 
 </body>
 </html>

@@ -28,7 +28,7 @@ public class MemberController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(MemberDTO dto) {
 		mService.update(dto);
-		return "redirect:/member/list";
+		return "redirect:/member/read/"+dto.getId();
 	}
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String updateui(@PathVariable("id") String id, Model model) {

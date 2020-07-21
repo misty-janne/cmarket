@@ -5,8 +5,8 @@
 <mapper namespace="m.e.m">
 
 <insert id="insert">
-	insert into member (id, pw, name, hp, addr)
-	values (#{id}, #{pw}, #{name}, #{hp}, #{addr})
+	insert into member (id, pw, name, hp, addr, modes)
+	values (#{id}, #{pw}, #{name}, #{hp}, #{addr}, #{modes})
 </insert>
 
 <select id="list" resultType="MemberDTO">
@@ -22,7 +22,7 @@
 </select>
 
 <update id="update">
-	update member set name = #{name}, hp = #{hp}, addr = #{addr}
+	update member set name = #{name}, hp = #{hp}, addr = #{addr}, modes = #{modes}
 	where id = #{id} and pw = #{pw}
 </update>
 
