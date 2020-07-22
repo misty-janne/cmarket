@@ -36,12 +36,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	// git test
-	 // git test
-	 // git test
-<<<<<<< HEAD
-	// git tegigigigit
-=======
-	//git gitgit
->>>>>>> fetch_head
+//asdsadsadsa
 }
