@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -81,11 +82,26 @@ public class MemberController {
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(MemberDTO dto) {
-		mService.insert(dto);
+		int result = mService.idChk(dto);
+		if (result == 1) {
+			return "/member/insert";
+		} else if (result == 0) {
+			mService.insert(dto);			
+		}
 		return "redirect:/member/list";
+		
 	}
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert() {
 		return "member/insert";
 	}
+	
+	//아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+	public int idChk(MemberDTO dto) {
+		int result = mService.idChk(dto);
+		return result;
+	}
+	
 }

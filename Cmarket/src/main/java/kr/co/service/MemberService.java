@@ -20,5 +20,7 @@ public interface MemberService {
 	void delete(String id);
 
 	MemberDTO loginpost(LoginDTO login);
+	
+	int idChk(MemberDTO dto);
 
 }

@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.loginpost(login);
 	}
 
+	@Override
+	public int idChk(MemberDTO dto) {
+		int result = mDao.idChk(dto);
+		return result;
+	}
 }

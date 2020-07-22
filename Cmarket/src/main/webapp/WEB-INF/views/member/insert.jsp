@@ -20,60 +20,105 @@
 </style>
 <body>
 
-
-	<div class="container">
 	
-	
-		<div class="row text-center">
-			<h1>회원 가입</h1>
-		</div><!-- /.row-text-center -->
 
-		<div class="row">
-			<form action="/member/insert" method="post">
+	<body>
+		<div class="container">
+			<div class="row">
+				<form action="/member/insert" method="post" id="insertForm">
+					<div class="form-group">
+						<label class="control-label" for="id">아이디</label>
+						<input class="form-control" type="text" id="id" name="id" />
+						<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="pw">패스워드</label>
+						<input class="form-control" type="password" id="pw" name="pw" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="name">성명</label>
+						<input class="form-control" type="text" id="name" name="name" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="hp">휴대전화</label>
+						<input class="form-control" type="text" id="hp" name="hp" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="addr">주소</label>
+						<input class="form-control" type="text" id="addr" name="addr" />
+					</div>
+					<div class="form-group" hidden>
+						<label class="control-label" for="modes">권한</label>
+						<input class="form-control" type="text" id="modes" name="modes" value="purchaser"/>
+					</div>
+				</form>
 				<div class="form-group">
-					<label for="id">아이디</label>
-					<input name="id" id="id" class="form-control" required>
+					<button class="btn btn-success" type="button" id="submit">회원가입</button>
+					<button class="cencle btn btn-danger" type="button">취소</button>
 				</div>
-				<div class="form-group">
-					<label for="pw">비밀번호</label>
-					<input name="pw" id="pw" type="password" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="hp">휴대전화</label>
-					<input name="hp" id="hp" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="name">이름</label>
-					<input name="name" id="name" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="addr">주소</label>
-					<input name="addr" id="addr" class="form-control" required>
-				</div>
-				<div class="form-group" hidden>
-					<label for="modes">권한</label>
-					<input name="modes" id="modes" value="purchaser" class="form-control" required>
-				</div>
-			</form><!-- /insert -->
-			
-			<div class="form-group">
-				<button class="btn btn-primary" id="insert_btn">가입하기</button>
-			</div><!-- /button -->			
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-
-	<script type="text/javascript">
+			</div>
+		</div>
+		
+		
+		
+				<script type="text/javascript">
 		$(document).ready(function(){
-			$("#insert_btn").click(function(event){
-				event.preventDefault();
-				$("form").submit();
-			});
-			$("#list_btn").click(function(event){
-				event.preventDefault();				
-				location.assign("/member/list");
-			});
+			// 취소
+			$(".cencle").on("click", function(){
+				location.href = "/member/list";
+			})
 			
-		});
+			$("#submit").on("click", function(){
+				if($("#id").val()==""){
+					alert("아이디를 입력해주세요.");
+					$("#id").focus();
+					return false;
+				}
+				if($("#pw").val()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#pw").focus();
+					return false;
+				}
+				if($("#name").val()==""){
+					alert("성명을 입력해주세요.");
+					$("#name").focus();
+					return false;
+				}
+				if($("#hp").val()==""){
+					alert("전화번호를 입력해주세요.");
+					$("#hp").focus();
+					return false;
+				}
+				if($("#addr").val()==""){
+					alert("주소를 입력해주세요.");
+					$("#addr").focus();
+					return false;
+				}
+				var idChkVal = $("#idChk").val();
+				if(idChkVal == "N"){
+					alert("중복확인 버튼을 눌러주세요.");
+				}else if(idChkVal == "Y"){
+					$("#insertForm").submit();
+				}
+			});
+		})
+		
+		function fn_idChk(){
+			$.ajax({
+				url : "/member/idChk",
+				type : "post",
+				dataType : "json",
+				data : {"id" : $("#id").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+					}else if(data == 0){
+						$("#idChk").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+		}
 	</script>
 </body>
 </html>
