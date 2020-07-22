@@ -36,9 +36,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	// git test
-	 // git test
-	 // git test
-	// git tegigigigit
-	//git gitgit
+//ddddddddddddddddd
 }
