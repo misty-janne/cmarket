@@ -39,5 +39,9 @@ public class HomeController {
 	// git test
 	 // git test
 	 // git test
+<<<<<<< HEAD
 	// git tegigigigit
+=======
+	//git gitgit
+>>>>>>> fetch_head
 }
